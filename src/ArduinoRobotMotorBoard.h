@@ -22,7 +22,6 @@
 #include "EasyTransfer2.h"
 #include "Multiplexer.h"
 #include "LineFollow.h"
-//#include "IRremote.h"
 
 #if ARDUINO >= 100
 #include "Arduino.h"
