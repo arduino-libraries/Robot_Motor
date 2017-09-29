@@ -73,6 +73,10 @@ void RobotMotorBoard::parseCommand(){
 	int value;
 	int speedL;
 	int speedR;
+	uint8_t KP;
+	uint8_t KD;
+	uint8_t robotSpeed;
+	uint8_t integrationTime;
 	if(this->messageIn.receiveData()){
 		//Serial.println("data received");
 		uint8_t command=messageIn.readByte();
@@ -119,12 +123,11 @@ void RobotMotorBoard::parseCommand(){
 				pauseMode(messageIn.readByte());//onOff state
 				break;
 			case COMMAND_LINE_FOLLOW_CONFIG:
-				LineFollow::config(
-					messageIn.readByte(),	//KP
-					messageIn.readByte(),	//KD
-					messageIn.readByte(),	//robotSpeed
-					messageIn.readByte()	//IntegrationTime
-				);
+				KP = messageIn.readByte();
+				KD = messageIn.readByte();
+				robotSpeed = messageIn.readByte();
+				integrationTime = messageIn.readByte();
+				LineFollow::config(KP, KD, robotSpeed, integrationTime);
 				break;
 		}
 	}
